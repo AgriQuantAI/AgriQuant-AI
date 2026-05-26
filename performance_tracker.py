@@ -1,6 +1,6 @@
 """
-ShieldOrange AI - Trading Performance Tracker
-Tracks and reports OJ futures trading performance metrics
+AgriQuant AI - Trading Performance Tracker
+Tracks and reports ag commodity futures trading performance metrics
 """
 
 import json
@@ -49,11 +49,11 @@ class PerformanceTracker:
         Args:
             prediction_id: Link to weather prediction
             entry_date: Trade entry date (ISO format)
-            entry_price: OJ futures entry price
+            entry_price: ag commodity futures entry price
             position_size_usd: Position size in USD
             direction: 'long' or 'short'
             exit_date: Trade exit date (if closed)
-            exit_price: OJ futures exit price (if closed)
+            exit_price: ag commodity futures exit price (if closed)
             pnl_usd: Profit/loss in USD (if closed)
             prediction_correct: Was weather prediction accurate?
         """

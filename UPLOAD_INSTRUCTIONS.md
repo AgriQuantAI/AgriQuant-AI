@@ -1,4 +1,4 @@
-# 🚀 ORANGESHIELD - CLEAN UPLOAD INSTRUCTIONS
+# 🚀 AgriQuant AI - UPLOAD INSTRUCTIONS
 
 ## ✅ CLEAN FILES READY
 
@@ -34,7 +34,7 @@ Download these 14 files individually - they have clean filenames:
 
 ## **OPTION 2: Download ZIP File**
 
-Download: `orangeshield_upload.zip`
+Download: `agriquant_upload.zip`
 
 Then:
 1. Extract the ZIP file
@@ -48,7 +48,7 @@ Then:
 ### Step 1: Go to Upload Page
 You should already be at:
 ```
-github.com/orangeshield-ai/orangeshield/upload
+github.com/agriquant-ai/agriquant/upload
 ```
 
 If not, go to your repository and click "Add file" → "Upload files"
@@ -65,14 +65,14 @@ You should see filenames like:
 
 **NOT like:**
 ```
-❌ /mnt/user-data/outputs/ORANGESHIELD_GITHUB_FINAL/README.md
+❌ /mnt/user-data/outputs/AgriQuant-AI/README.md
 ```
 
 ### Step 3: Commit Message
 
 **In the first box (commit title):**
 ```
-Initial commit - Complete OrangeShield AI system
+Initial commit - Complete AgriQuant AI system
 ```
 
 **In the second box (extended description):**
@@ -103,9 +103,9 @@ System Components:
 🔹 main.py - Main orchestrator
 🔹 demo.py - Demonstrations
 
-📧 Contact: research@orangeshield.ai
-🐦 Twitter: @OrangeShieldAI
-🌐 Website: orangeshield.ai
+📧 Contact: research@agriquant.ai
+🐦 Twitter: @AgriQuant AIAI
+🌐 Website: agriquant.ai
 ```
 
 ### Step 4: Click "Commit changes"

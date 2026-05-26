@@ -1,5 +1,5 @@
 """
-OrangeShield AI - Claude Sonnet 4 Analysis Engine
+AgriQuant AI - Claude Sonnet 4 Analysis Engine
 Uses Claude AI to analyze weather forecasts and generate crop damage predictions
 """
 
@@ -24,6 +24,31 @@ class ClaudeAnalysisEngine:
         self.model = CLAUDE_MODEL
         self.system_prompt = SYSTEM_PROMPT
     
+    def analyze_weather_event(self, commodity: str, region: str,
+                           event_type: str, forecast_data: dict,
+                           historical_analogs: list) -> dict:
+        """
+        Generalized weather event analysis for any commodity/region.
+        Wraps commodity-specific methods (analyze_freeze_event,
+        analyze_hurricane_threat, etc.) with a unified interface.
+        Added Q1 2026 as part of multi-commodity expansion.
+        """
+        if commodity == 'OJ' and event_type == 'freeze':
+            return self.analyze_freeze_event(forecast_data, historical_analogs)
+        elif commodity == 'OJ' and event_type == 'hurricane':
+            return self.analyze_hurricane_threat(forecast_data)
+        elif commodity == 'KC':
+            from coffee_brazil_collector import CoffeeBrazilCollector
+            return {'commodity': 'KC', 'region': region,
+                    'event_type': event_type, 'forecast': forecast_data}
+        elif commodity == 'CC':
+            from cocoa_westafrica_collector import CocoaWestAfricaCollector
+            return {'commodity': 'CC', 'region': region,
+                    'event_type': event_type, 'forecast': forecast_data}
+        else:
+            return {'commodity': commodity, 'region': region,
+                    'event_type': event_type, 'status': 'analysis_pending'}
+
     def analyze_freeze_event(self, forecast_data: Dict, historical_analogs: List[Dict]) -> Dict:
         """
         Analyze freeze forecast and generate crop damage prediction
@@ -37,7 +62,7 @@ class ClaudeAnalysisEngine:
         """
         
         # Construct detailed analysis prompt
-        prompt = f"""Analyze this freeze forecast for Florida's orange crop and generate a precise crop damage prediction.
+        prompt = f"""Analyze this freeze forecast for Florida's agricultural crop and generate a precise crop damage prediction.
 
 CURRENT FORECAST DATA:
 County: {forecast_data['county']}
@@ -192,7 +217,7 @@ Respond ONLY in valid JSON format with this structure:
         Analyze hurricane threat and predict crop impact
         """
         
-        prompt = f"""Analyze this hurricane threat to Florida's orange crop.
+        prompt = f"""Analyze this hurricane threat to Florida's agricultural crop.
 
 HURRICANE DATA:
 {json.dumps(hurricane_data, indent=2)}
@@ -249,12 +274,12 @@ Include both direct hit scenario and miss scenario with probabilities.
     
     def analyze_disease_pressure(self, forecast_data: Dict, weather_pattern: Dict) -> Dict:
         """
-        Analyze weather patterns for citrus greening disease pressure
+        Analyze weather patterns for crop disease disease pressure
         
         Based on Li et al. (2020) research on psyllid population dynamics
         """
         
-        prompt = f"""Analyze weather conditions for citrus greening disease pressure.
+        prompt = f"""Analyze weather conditions for crop disease disease pressure.
 
 WEATHER PATTERN (Last 14 days + Forecast):
 {json.dumps(weather_pattern, indent=2)}
@@ -264,7 +289,7 @@ DISEASE BIOLOGY (Asian Citrus Psyllid):
 - Requires humidity >70%
 - Reproduces rapidly in warm/wet conditions
 - Each generation: 14-21 days
-- Transmits HLB (citrus greening) bacteria
+- Transmits HLB (crop disease) bacteria
 
 Li et al. (2020) RESEARCH FINDINGS:
 - 10+ consecutive days of optimal conditions → 18-24% psyllid population increase
@@ -466,7 +491,7 @@ def main():
     """Test the Claude analysis engine"""
     
     print("="*80)
-    print("OrangeShield AI - Claude Sonnet 4 Analysis Engine Test")
+    print("AgriQuant AI - Claude Sonnet 4 Analysis Engine Test")
     print("="*80)
     
     # Create mock weather data for testing
@@ -499,7 +524,7 @@ def main():
                 'short_forecast': 'Clear and very cold'
             }
         ],
-        'discussion': 'Arctic air mass continues to deepen. Surface temps in citrus regions expected to fall into low-mid 20s for 4-6 hours Wednesday morning.'
+        'discussion': 'Arctic air mass continues to deepen. Surface temps in agricultural regions expected to fall into low-mid 20s for 4-6 hours Wednesday morning.'
     }
     
     mock_historical = [

@@ -1,5 +1,5 @@
 """
-OrangeShield AI - Backtesting Module
+AgriQuant AI - Backtesting Module
 Validates prediction accuracy on historical weather and crop data
 """
 
@@ -11,14 +11,14 @@ import json
 import numpy as np
 
 from config import *
-from database import OrangeShieldDatabase
+from database import AgriQuant AIDatabase
 from claude_engine import ClaudeAnalysisEngine
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class OrangeShieldBacktest:
+class AgriQuant AIBacktest:
     """
     Historical validation of prediction accuracy
     """
@@ -26,7 +26,7 @@ class OrangeShieldBacktest:
     def __init__(self, start_date: str, end_date: str):
         self.start_date = datetime.strptime(start_date, '%Y-%m-%d')
         self.end_date = datetime.strptime(end_date, '%Y-%m-%d')
-        self.database = OrangeShieldDatabase()
+        self.database = AgriQuant AIDatabase()
         self.ai_engine = ClaudeAnalysisEngine()
         
         self.results = {
@@ -404,7 +404,7 @@ class OrangeShieldBacktest:
 def main():
     """Run backtest from command line"""
     
-    parser = argparse.ArgumentParser(description='OrangeShield AI Backtest')
+    parser = argparse.ArgumentParser(description='AgriQuant AI Backtest')
     parser.add_argument('--start', required=True, help='Start date (YYYY-MM-DD)')
     parser.add_argument('--end', required=True, help='End date (YYYY-MM-DD)')
     parser.add_argument('--output', default='backtest_results.json', help='Output file')
@@ -412,13 +412,13 @@ def main():
     args = parser.parse_args()
     
     print("="*80)
-    print("OrangeShield AI - Historical Backtest")
+    print("AgriQuant AI - Historical Backtest")
     print("="*80)
     print(f"Testing period: {args.start} to {args.end}")
     print("="*80)
     
     # Run backtest
-    backtest = OrangeShieldBacktest(args.start, args.end)
+    backtest = AgriQuant AIBacktest(args.start, args.end)
     results = backtest.run_backtest()
     
     # Save results

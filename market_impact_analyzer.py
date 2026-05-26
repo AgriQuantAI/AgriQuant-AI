@@ -1,5 +1,5 @@
 """
-OrangeShield Market Impact Analysis
+AgriQuant AI Market Impact Analysis
 Translate weather events into price impact forecasts
 """
 
@@ -337,7 +337,7 @@ if __name__ == "__main__":
     # Forecast price impact from freeze
     forecast = analyzer.forecast_price_impact(
         supply_disruption_pct=0.12,  # 12% crop loss
-        current_price=380.0,  # Current OJ futures price
+        current_price=380.0,  # Current ag commodity futures price
         event_type="freeze",
         timeline_days=7
     )

@@ -1,6 +1,6 @@
 """
-ShieldOrange AI - Market Microstructure Analyzer
-Advanced order flow and liquidity analysis for OJ futures
+AgriQuant AI - Market Microstructure Analyzer
+Advanced order flow and liquidity analysis for ag commodity futures
 """
 
 import numpy as np
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 class MarketMicrostructureAnalyzer:
     """
-    Analyzes market microstructure for OJ futures
+    Analyzes market microstructure for ag commodity futures
     - Order flow imbalance
     - Liquidity metrics
     - Price impact models

@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: timescale/timescaledb-ha:pg15-latest
+    environment:
+      POSTGRES_DB: agriquant
+      POSTGRES_USER: agriquant
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agriquant"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://agriquant:${DB_PASSWORD}@db:5432/agriquant
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      NOAA_API_KEY: ${NOAA_API_KEY}
+      PLANET_API_KEY: ${PLANET_API_KEY}
+      CME_API_KEY: ${CME_API_KEY}
+      AGRIQUANT_ENV: production
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  api:
+    build: .
+    command: uvicorn dashboard_api:app --host 0.0.0.0 --port 8000 --workers 2
+    depends_on:
+      - db
+      - app
+    environment:
+      DATABASE_URL: postgresql://agriquant:${DB_PASSWORD}@db:5432/agriquant
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+volumes:
+  pgdata:

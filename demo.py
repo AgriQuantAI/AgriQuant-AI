@@ -1,15 +1,15 @@
 """
-OrangeShield AI - Quick Demo Script
+AgriQuant AI - Quick Demo Script
 Demonstrates the complete workflow with example data
 """
 
 import json
 from datetime import datetime
 
-# Import OrangeShield components
+# Import AgriQuant AI components
 from weather_collector import NOAAWeatherCollector
 from claude_engine import ClaudeAnalysisEngine
-from database import OrangeShieldDatabase
+from database import AgriQuant AIDatabase
 
 
 def demo_weather_collection():
@@ -178,9 +178,9 @@ def demo_database_storage(forecast, prediction):
     print("Database configuration: config.DATABASE_URL")
     print("\nTo actually run database operations:")
     print("  1. Install PostgreSQL")
-    print("  2. Create database: createdb orangeshield")
+    print("  2. Create database: createdb agriquant")
     print("  3. Set DATABASE_URL in .env file")
-    print("  4. Run: python -c 'from database import *; db=OrangeShieldDatabase(); db.connect(); db.create_tables()'")
+    print("  4. Run: python -c 'from database import *; db=AgriQuant AIDatabase(); db.connect(); db.create_tables()'")
     
     print("\n--- Database Schema ---")
     print("Tables that would be created:")
@@ -189,7 +189,7 @@ def demo_database_storage(forecast, prediction):
     print("  • historical_events    - 40 years of verified events")
     print("  • usda_reports         - USDA crop damage reports")
     print("  • satellite_imagery    - Planet Labs / Sentinel-2 data")
-    print("  • market_prices        - CME orange juice futures")
+    print("  • market_prices        - CME agricultural commodity futures")
     print("  • performance_metrics  - Accuracy tracking")
     
     print("\n--- Example Database Operations ---")
@@ -212,7 +212,7 @@ def demo_performance_tracking():
     print("DEMO 4: PERFORMANCE TRACKING")
     print("="*80)
     
-    print("\nOrangeShield tracks these metrics continuously:")
+    print("\nAgriQuant AI tracks these metrics continuously:")
     
     print("\n--- Accuracy Metrics ---")
     print("  • Forecast Accuracy: % predictions verified by USDA")
@@ -252,7 +252,7 @@ def demo_complete_workflow():
     """Run complete demo workflow"""
     
     print("\n" + "="*80)
-    print("ORANGESHIELD AI - COMPLETE SYSTEM DEMONSTRATION")
+    print("AgriQuant AI - COMPLETE SYSTEM DEMONSTRATION")
     print("="*80)
     print("\nThis demo shows the complete workflow:")
     print("  1. Weather data collection from NOAA")
@@ -292,8 +292,8 @@ def demo_complete_workflow():
     print("  • Individual module files have detailed docstrings")
     
     print("\nSupport:")
-    print("  • Email: research@orangeshield.ai")
-    print("  • GitHub: github.com/orangeshield/orangeshield-ai")
+    print("  • Email: research@agriquant.ai")
+    print("  • GitHub: github.com/agriquant/agriquant-ai")
     
     print("\n" + "="*80)
 

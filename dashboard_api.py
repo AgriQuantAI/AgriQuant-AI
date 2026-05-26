@@ -1,5 +1,5 @@
 """
-ShieldOrange AI - Dashboard API
+AgriQuant AI - Dashboard API
 FastAPI server for public dashboard and transparency reporting
 """
 
@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 from datetime import datetime
 import json
 
-app = FastAPI(title="ShieldOrange AI Dashboard API", version="1.0.0")
+app = FastAPI(title="AgriQuant AI Dashboard API", version="1.0.0")
 
 # CORS for web dashboard
 app.add_middleware(
@@ -24,7 +24,7 @@ app.add_middleware(
 async def root():
     """API root endpoint"""
     return {
-        "name": "ShieldOrange AI Dashboard API",
+        "name": "AgriQuant AI Dashboard API",
         "version": "1.0.0",
         "endpoints": {
             "/health": "System health check",

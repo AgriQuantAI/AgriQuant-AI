@@ -1,6 +1,6 @@
 """
-ShieldOrange AI - LSTM Deep Learning Price Predictor
-Neural network approach for time-series OJ futures prediction
+AgriQuant AI - LSTM Deep Learning Price Predictor
+Neural network approach for time-series ag commodity futures prediction
 """
 
 import numpy as np
@@ -39,7 +39,7 @@ class TimeSeriesDataset(Dataset):
 
 class LSTMPricePredictor(nn.Module):
     """
-    Multi-layer LSTM network for OJ futures price prediction
+    Multi-layer LSTM network for ag commodity futures price prediction
     Captures temporal dependencies in weather and market patterns
     """
     

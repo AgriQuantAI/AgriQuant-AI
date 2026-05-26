@@ -1,5 +1,5 @@
 """
-OrangeShield AI - Configuration File
+AgriQuant AI - Configuration File
 All system parameters, API keys, and thresholds
 """
 
@@ -25,13 +25,14 @@ PLANET_API_KEY = os.getenv('PLANET_API_KEY', 'your-planet-key-here')
 CME_API_KEY = os.getenv('CME_API_KEY', 'your-cme-key-here')
 
 # Database
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://localhost/orangeshield')
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://localhost/agriquant')
 
 # ============================================================================
-# GEOGRAPHIC PARAMETERS - Florida Citrus Belt
+# GEOGRAPHIC PARAMETERS - Multi-Commodity Agricultural Regions
 # ============================================================================
 
 # Primary citrus producing counties
+# Florida OJ / Citrus regions
 CITRUS_COUNTIES = {
     'Polk': {
         'fips': '12105',
@@ -64,7 +65,7 @@ CITRUS_COUNTIES = {
 }
 
 # Citrus belt bounding box (for satellite imagery)
-CITRUS_BELT_BBOX = {
+FLORIDA_BBOX = {
     'min_lat': 26.5,
     'max_lat': 28.5,
     'min_lon': -82.5,
@@ -119,7 +120,7 @@ HURRICANE_THRESHOLDS = {
     }
 }
 
-# Disease pressure (citrus greening)
+# Disease pressure (crop disease)
 DISEASE_THRESHOLDS = {
     'favorable_conditions': {
         'temp_min': 85.0,  # Fahrenheit
@@ -207,7 +208,7 @@ CLAUDE_SETTINGS = {
 }
 
 # System prompt for weather analysis
-SYSTEM_PROMPT = """You are OrangeShield AI, a specialized system for predicting agricultural supply impacts from weather events in Florida's citrus industry.
+SYSTEM_PROMPT = """You are AgriQuant AI, a specialized system for predicting agricultural commodity price impacts from weather events across six global markets: Orange Juice (Florida), Coffee (Brazil), Cocoa (West Africa), Sugar (Brazil/India), Corn (US Midwest), and Wheat (Great Plains/Black Sea). You analyze satellite data, weather forecasts, and 40 years of weather-price correlations to generate signals 48-72 hours before traditional analysts react.
 
 Your expertise:
 - Meteorology and weather pattern analysis
@@ -255,7 +256,7 @@ LI_DISEASE_MODEL = {
 }
 
 # Spatial propagation model
-# How localized freeze spreads across citrus belt
+# How localized freeze spreads across agricultural production zones
 SPATIAL_PROPAGATION = {
     'polk_to_highlands': 0.85,  # 85% correlation
     'polk_to_hardee': 0.75,
@@ -316,10 +317,10 @@ LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 
 # Log file locations
 LOG_FILES = {
-    'main': '/var/log/orangeshield/main.log',
-    'api': '/var/log/orangeshield/api.log',
-    'predictions': '/var/log/orangeshield/predictions.log',
-    'errors': '/var/log/orangeshield/errors.log'
+    'main': '/var/log/agriquant/main.log',
+    'api': '/var/log/agriquant/api.log',
+    'predictions': '/var/log/agriquant/predictions.log',
+    'errors': '/var/log/agriquant/errors.log'
 }
 
 # Alert thresholds
@@ -366,9 +367,9 @@ SYSTEM_START_DATE = datetime(2026, 1, 1)
 
 # Contact information
 CONTACT = {
-    'email': 'research@orangeshield.ai',
-    'github': 'github.com/orangeshield',
-    'website': 'orangeshield.ai'
+    'email': 'research@agriquant.ai',
+    'github': 'github.com/agriquant',
+    'website': 'agriquant.ai'
 }
 
 # Version
@@ -403,6 +404,64 @@ RATE_LIMITS = {
     'cme_rpm': 60
 }
 
-print(f"OrangeShield AI Config Loaded - Version {VERSION}")
+print(f"AgriQuant AI Config Loaded - Version {VERSION}")
 print(f"Deployment Phase: {DEPLOYMENT_PHASE}")
 print(f"Claude Model: {CLAUDE_MODEL}")
+
+# ============================================================================
+# MULTI-COMMODITY CONFIGURATION
+# ============================================================================
+
+COMMODITIES = {
+    'OJ': {
+        'name': 'Orange Juice',
+        'ticker': 'FCOJ-A',
+        'exchange': 'ICE',
+        'region': 'Florida, USA',
+        'primary_risk': 'freeze, hurricane, citrus greening',
+        'bbox': {'lat_min': 25.5, 'lat_max': 30.5, 'lon_min': -83.0, 'lon_max': -79.5},
+    },
+    'KC': {
+        'name': 'Coffee (Arabica)',
+        'ticker': 'KC',
+        'exchange': 'ICE',
+        'region': 'Minas Gerais, Brazil',
+        'primary_risk': 'frost, drought, excessive rain',
+        'bbox': {'lat_min': -25.0, 'lat_max': -14.0, 'lon_min': -50.0, 'lon_max': -38.0},
+    },
+    'CC': {
+        'name': 'Cocoa',
+        'ticker': 'CC',
+        'exchange': 'ICE',
+        'region': 'Ghana / Ivory Coast',
+        'primary_risk': 'drought, Harmattan winds, disease',
+        'bbox': {'lat_min': 4.0, 'lat_max': 11.0, 'lon_min': -8.0, 'lon_max': 2.0},
+    },
+    'SB': {
+        'name': 'Sugar #11',
+        'ticker': 'SB',
+        'exchange': 'ICE',
+        'region': 'Brazil / India',
+        'primary_risk': 'drought, monsoon failure, policy',
+        'bbox': {'lat_min': -25.0, 'lat_max': -14.0, 'lon_min': -52.0, 'lon_max': -38.0},
+    },
+    'ZC': {
+        'name': 'Corn',
+        'ticker': 'ZC',
+        'exchange': 'CME',
+        'region': 'US Midwest',
+        'primary_risk': 'drought, derecho, early frost',
+        'bbox': {'lat_min': 36.0, 'lat_max': 48.0, 'lon_min': -104.0, 'lon_max': -80.0},
+    },
+    'ZW': {
+        'name': 'Wheat',
+        'ticker': 'ZW',
+        'exchange': 'CME',
+        'region': 'Great Plains / Black Sea',
+        'primary_risk': 'drought, freeze, Black Sea disruption',
+        'bbox': {'lat_min': 34.0, 'lat_max': 49.0, 'lon_min': -105.0, 'lon_max': -94.0},
+    },
+}
+
+# Active commodities to monitor
+ACTIVE_COMMODITIES = ['OJ', 'KC', 'CC', 'SB', 'ZC', 'ZW']

@@ -1,4 +1,4 @@
-# OrangeShield AI - Complete System Summary
+# AgriQuant AI - Complete System Summary
 
 ## What Has Been Built
 
@@ -188,9 +188,9 @@ python demo.py
 sudo apt install postgresql-14
 
 # Setup database
-sudo -u postgres createdb orangeshield
-sudo -u postgres psql -c "CREATE USER orangeshield WITH PASSWORD 'secure_password';"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE orangeshield TO orangeshield;"
+sudo -u postgres createdb agriquant
+sudo -u postgres psql -c "CREATE USER agriquant WITH PASSWORD 'secure_password';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE agriquant TO agriquant;"
 
 # Install Python dependencies
 pip install -r requirements.txt
@@ -200,7 +200,7 @@ cp .env.example .env
 nano .env  # Add API keys
 
 # Initialize database
-python -c "from database import *; db=OrangeShieldDatabase(); db.connect(); db.create_tables(); db.seed_historical_data()"
+python -c "from database import *; db=AgriQuant AIDatabase(); db.connect(); db.create_tables(); db.seed_historical_data()"
 
 # Start system
 python main.py continuous
@@ -209,7 +209,7 @@ python main.py continuous
 ### Option 3: Docker Deployment
 ```bash
 # Build image
-docker build -t orangeshield:latest .
+docker build -t agriquant:latest .
 
 # Run container
 docker-compose up -d
@@ -503,7 +503,7 @@ The code is production-ready. The methodology is sound. The infrastructure is sc
 **Technical Questions:**
 - Review README.md and PROJECT_STRUCTURE.md first
 - Check inline code documentation
-- Review logs in /var/log/orangeshield/
+- Review logs in /var/log/agriquant/
 
 **Issues:**
 - Database: Check DATABASE_URL, verify PostgreSQL running
@@ -524,4 +524,4 @@ The code is production-ready. The methodology is sound. The infrastructure is sc
 
 ---
 
-**OrangeShield AI - The complete system is ready to deploy.**
+**AgriQuant AI - The complete system is ready to deploy.**

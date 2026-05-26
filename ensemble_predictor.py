@@ -1,6 +1,6 @@
 """
-ShieldOrange AI - Multi-Model Price Prediction Engine
-Ensemble approach combining multiple prediction models for OJ futures
+AgriQuant AI - Multi-Model Price Prediction Engine
+Ensemble approach combining multiple prediction models for ag commodity futures
 """
 
 import numpy as np
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 class EnsemblePricePredictor:
     """
-    Sophisticated ensemble prediction model for OJ futures prices
+    Sophisticated ensemble prediction model for ag commodity futures prices
     Combines weather impact, seasonal patterns, and market dynamics
     """
     
@@ -62,7 +62,7 @@ class EnsemblePricePredictor:
         
         Args:
             weather_data: Current and forecasted weather conditions
-            market_data: Recent OJ futures prices and volumes
+            market_data: Recent ag commodity futures prices and volumes
             seasonal_data: Historical seasonal patterns
             
         Returns:
@@ -230,7 +230,7 @@ class EnsemblePricePredictor:
         horizon_days: int = 7
     ) -> Dict:
         """
-        Predict OJ futures price movement
+        Predict ag commodity futures price movement
         
         Args:
             weather_data: Current weather conditions and forecast
@@ -298,7 +298,7 @@ class EnsemblePricePredictor:
         
         Args:
             prediction: Output from predict_price_movement()
-            current_price: Current OJ futures price
+            current_price: Current ag commodity futures price
             confidence_threshold: Minimum model agreement for trade
             
         Returns:

@@ -1,0 +1,78 @@
+# AgriQuant AI — Runtime Configuration
+# Overrides config.py defaults. Environment-specific values via .env
+
+system:
+  name: "AgriQuant AI"
+  version: "2.1.0"
+  environment: "${AGRIQUANT_ENV}"
+  monitoring_interval_seconds: 900   # 15 minutes
+  max_concurrent_collectors: 6
+  log_level: "${LOG_LEVEL:-INFO}"
+
+commodities:
+  active: ["OJ", "KC", "CC", "SB", "ZC", "ZW"]
+  phase_1: ["OJ"]                    # Live trading
+  phase_2: ["KC", "CC", "SB"]        # Monitoring, signals not yet traded
+  phase_3: ["ZC", "ZW"]             # Roadmap Q4 2026
+
+risk:
+  max_position_size_pct: 5.0
+  max_concurrent_positions: 4
+  stop_loss_pct: 2.0
+  max_hold_days: 21
+  max_portfolio_drawdown_pct: 15.0   # Emergency halt threshold
+  correlated_cluster_reduction: 0.70 # Reduce size by 30% in correlated cluster
+
+signals:
+  min_confidence_threshold: 0.55
+  min_estimated_move_pct: 3.0
+  time_horizon_hours: [24, 48, 72]
+  alert_channels: ["slack", "telegram"]
+
+data_sources:
+  noaa:
+    base_url: "https://api.weather.gov"
+    rate_limit_per_minute: 60
+    retry_attempts: 3
+    timeout_seconds: 10
+  inmet:
+    base_url: "https://apitempo.inmet.gov.br"
+    rate_limit_per_minute: 20
+    timeout_seconds: 10
+  sentinel_hub:
+    base_url: "https://services.sentinel-hub.com"
+    max_cloud_coverage_pct: 30
+    revisit_days: 5
+  modis:
+    base_url: "https://modis.ornl.gov/rst/api/v1"
+    product: "MOD13Q1"              # 16-day NDVI, 250m
+    timeout_seconds: 20
+  planet_labs:
+    enabled: false                  # Requires paid subscription
+    resolution_m: 3
+    revisit_days: 1
+
+ml_models:
+  ensemble:
+    models: ["random_forest", "gradient_boosting", "ridge", "lasso"]
+    n_features: 50
+    retrain_frequency_days: 30
+  lstm:
+    sequence_length: 60
+    hidden_size: 128
+    num_layers: 3
+    dropout: 0.2
+    epochs: 100
+  garch:
+    model: "gjrGARCH"
+    order: [1, 1]
+    distribution: "std"
+
+database:
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  timescaledb: true
+  chunk_interval_weather: "7 days"
+  chunk_interval_prices: "1 day"
+  retention_policy_years: 10

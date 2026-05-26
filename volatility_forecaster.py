@@ -1,6 +1,6 @@
 """
-ShieldOrange AI - Volatility Forecasting Models
-GARCH, EWMA, and regime-switching volatility models for OJ futures
+AgriQuant AI - Volatility Forecasting Models
+GARCH, EWMA, and regime-switching volatility models for ag commodity futures
 """
 
 import numpy as np
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 class VolatilityForecaster:
     """
-    Advanced volatility forecasting for OJ futures
+    Advanced volatility forecasting for ag commodity futures
     - GARCH(1,1) model
     - EWMA (Exponentially Weighted Moving Average)
     - Regime-switching volatility

@@ -1,5 +1,5 @@
 """
-OrangeShield AI - Main Orchestration System
+AgriQuant AI - Main Orchestration System
 Coordinates weather monitoring, AI analysis, and prediction generation
 """
 
@@ -14,7 +14,7 @@ import uuid
 from config import *
 from weather_collector import NOAAWeatherCollector
 from claude_engine import ClaudeAnalysisEngine
-from database import OrangeShieldDatabase
+from database import AgriQuant AIDatabase
 
 logging.basicConfig(
     level=logging.INFO,
@@ -23,7 +23,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-class OrangeShieldOrchestrator:
+class AgriQuant AIOrchestrator:
     """
     Main system coordinator
     Runs continuous monitoring and generates predictions
@@ -32,17 +32,17 @@ class OrangeShieldOrchestrator:
     def __init__(self):
         self.weather_collector = NOAAWeatherCollector()
         self.ai_engine = ClaudeAnalysisEngine()
-        self.database = OrangeShieldDatabase()
+        self.database = AgriQuant AIDatabase()
         
         self.deployment_phase = DEPLOYMENT_PHASE
         self.last_forecast_time = {}  # Track last forecast for each county
         self.active_predictions = []   # Currently active predictions
         
-        logger.info(f"OrangeShield Orchestrator initialized - {self.deployment_phase} mode")
+        logger.info(f"AgriQuant AI Orchestrator initialized - {self.deployment_phase} mode")
     
     def initialize(self):
         """Initialize system components"""
-        logger.info("Initializing OrangeShield AI system...")
+        logger.info("Initializing AgriQuant AI system...")
         
         # Connect to database
         self.database.connect()
@@ -55,7 +55,7 @@ class OrangeShieldOrchestrator:
     
     def shutdown(self):
         """Graceful shutdown"""
-        logger.info("Shutting down OrangeShield AI system...")
+        logger.info("Shutting down AgriQuant AI system...")
         self.database.disconnect()
         logger.info("Shutdown complete")
     
@@ -239,7 +239,7 @@ Expected Impact: {damage:.1f}% crop damage
 Confidence: {confidence:.0f}%
 Timing: {timing}
 
-This prediction meets OrangeShield's threshold for significant agricultural impact.
+This prediction meets AgriQuant AI's threshold for significant agricultural impact.
 Review full analysis and prepare for potential supply disruption.
         """.strip()
         
@@ -251,7 +251,7 @@ Review full analysis and prepare for potential supply disruption.
         In production: email, SMS, Slack, webhook
         """
         # For now, just log and save to file
-        alert_filename = f"/tmp/orangeshield_alert_{alert['timestamp'].replace(':', '-')}.json"
+        alert_filename = f"/tmp/agriquant_alert_{alert['timestamp'].replace(':', '-')}.json"
         
         with open(alert_filename, 'w') as f:
             json.dump(alert, f, indent=2)
@@ -373,14 +373,14 @@ def main():
     Main entry point
     """
     print("="*80)
-    print("OrangeShield AI - Weather Prediction System")
+    print("AgriQuant AI - Weather Prediction System")
     print(f"Version: {VERSION}")
     print(f"Deployment Phase: {DEPLOYMENT_PHASE}")
     print("="*80)
     print()
     
     # Initialize orchestrator
-    orchestrator = OrangeShieldOrchestrator()
+    orchestrator = AgriQuant AIOrchestrator()
     orchestrator.initialize()
     
     # Run mode selection

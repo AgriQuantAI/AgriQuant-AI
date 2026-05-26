@@ -1,5 +1,11 @@
 """
-OrangeShield AI - NOAA Weather Data Module
+AgriQuant AI - Primary Weather Collector
+Originally built for OJ/Florida (Phase 1). Multi-commodity expansion
+via coffee_brazil_collector.py, cocoa_westafrica_collector.py,
+grains_collector.py, and sugar_collector.py (added Q1 2026).
+This module remains the reference implementation for the OJ signal pipeline.
+"""
+AgriQuant AI - NOAA Weather Data Module
 Collects weather forecasts, satellite data, and historical weather information
 """
 
@@ -24,7 +30,7 @@ class NOAAWeatherCollector:
         self.api_key = NOAA_API_KEY
         self.session = requests.Session()
         self.session.headers.update({
-            'User-Agent': 'OrangeShield-AI/1.0 (research@orangeshield.ai)',
+            'User-Agent': 'AgriQuant AI-AI/1.0 (research@agriquant.ai)',
             'Accept': 'application/geo+json'
         })
         
@@ -227,7 +233,7 @@ class NOAAWeatherCollector:
     
     def detect_hurricane_threat(self, county_name: str) -> Optional[Dict]:
         """
-        Check National Hurricane Center for active storms threatening citrus belt
+        Check National Hurricane Center for active storms threatening agricultural production zones
         
         Returns:
             Dict with hurricane threat data or None
@@ -380,12 +386,12 @@ class NOAAWeatherCollector:
     
     def monitor_all_counties(self) -> Dict:
         """
-        Collect forecasts for all citrus counties
+        Collect forecasts for all production regions
         
         Returns:
             Dict with forecasts for all counties and aggregate analysis
         """
-        logger.info("Starting comprehensive weather monitoring for all citrus counties")
+        logger.info("Starting comprehensive weather monitoring for all production regions")
         
         all_forecasts = {}
         aggregate_risk = {
@@ -430,7 +436,7 @@ def main():
     """Test the NOAA weather collector"""
     
     print("="*80)
-    print("OrangeShield AI - NOAA Weather Data Collector Test")
+    print("AgriQuant AI - NOAA Weather Data Collector Test")
     print("="*80)
     
     collector = NOAAWeatherCollector()
@@ -452,7 +458,7 @@ def main():
             print(f"  Expected damage: {freeze_risk['max_expected_damage']*100:.1f}%")
     
     # Test 2: Monitor all counties
-    print("\n[TEST 2] Monitoring all citrus counties...")
+    print("\n[TEST 2] Monitoring all production regions...")
     all_data = collector.monitor_all_counties()
     print(f"✓ Monitored {all_data['total_counties_monitored']} counties")
     print(f"  Freeze threat: {all_data['aggregate_risk']['freeze']}")

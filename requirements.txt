@@ -1,4 +1,4 @@
-# OrangeShield AI - Python Requirements
+# AgriQuant AI - Python Requirements
 # Install with: pip install -r requirements.txt
 
 # Core AI/ML

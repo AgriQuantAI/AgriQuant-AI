@@ -1,5 +1,5 @@
 """
-OrangeShield AI - Database Module
+AgriQuant AI - Database Module
 Stores weather data, predictions, USDA reports, and performance metrics
 """
 
@@ -14,9 +14,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class OrangeShieldDatabase:
+class AgriQuant AIDatabase:
     """
-    PostgreSQL database for storing all OrangeShield data
+    PostgreSQL database for storing all AgriQuant AI data
     """
     
     def __init__(self, connection_string: str = None):
@@ -508,7 +508,7 @@ def main():
     """Test database operations"""
     
     print("="*80)
-    print("OrangeShield AI - Database Module Test")
+    print("AgriQuant AI - Database Module Test")
     print("="*80)
     
     # Note: Requires PostgreSQL to be running
@@ -517,7 +517,7 @@ def main():
     print("\nDatabase module loaded successfully")
     print("To test, ensure PostgreSQL is running and DATABASE_URL is configured")
     print("\nExample usage:")
-    print("  db = OrangeShieldDatabase()")
+    print("  db = AgriQuant AIDatabase()")
     print("  db.connect()")
     print("  db.create_tables()")
     print("  db.seed_historical_data()")

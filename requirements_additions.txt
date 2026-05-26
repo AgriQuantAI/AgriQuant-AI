@@ -16,6 +16,6 @@ scipy>=1.11.0
 # - requests (API calls)
 # - numpy, pandas (data processing)
 # - psycopg2-binary (database)
-# - solana, solders (blockchain)
+# - base, solders (blockchain)
 # - fastapi, uvicorn (dashboard API)
 # - ccxt (trading)

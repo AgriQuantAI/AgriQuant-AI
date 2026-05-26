@@ -1,5 +1,5 @@
 """
-OrangeShield Risk Analysis Module
+AgriQuant AI Risk Analysis Module
 Comprehensive supply risk assessment for agricultural commodities
 """
 
@@ -130,7 +130,7 @@ class GroveHealthMonitor:
 
 class SupplyRiskAnalyzer:
     """
-    Comprehensive supply risk analysis for orange crop
+    Comprehensive supply risk analysis for agricultural crop
     
     Combines:
     - Weather forecasts
@@ -281,11 +281,11 @@ class SupplyRiskAnalyzer:
         - Wind damage (fruit drop, tree damage)
         - Flooding risk
         - Disease pressure (post-storm)
-        - Path through citrus belt
+        - Path through agricultural production zones
         """
         
-        # Check if path intersects citrus belt
-        # Florida citrus belt: roughly 27-28°N, 80-82°W
+        # Check if path intersects agricultural production zones
+        # Florida agricultural production zones: roughly 27-28°N, 80-82°W
         citrus_belt = {
             'lat_min': 27.0,
             'lat_max': 28.5,
@@ -300,7 +300,7 @@ class SupplyRiskAnalyzer:
         )
         
         if not path_intersects:
-            # Path misses citrus belt
+            # Path misses agricultural production zones
             return RiskAssessment(
                 timestamp=datetime.now(),
                 event_type=EventType.HURRICANE,
@@ -310,7 +310,7 @@ class SupplyRiskAnalyzer:
                 affected_counties=[],
                 total_production_affected_pct=0.01,
                 confidence=confidence,
-                timeline="Hurricane path diverges from citrus belt",
+                timeline="Hurricane path diverges from agricultural production zones",
                 factors={
                     'wind_speed': wind_speed,
                     'rainfall': rainfall_inches,
@@ -319,7 +319,7 @@ class SupplyRiskAnalyzer:
                 recommendation="No significant supply impact expected"
             )
         
-        # Path hits citrus belt - assess damage
+        # Path hits agricultural production zones - assess damage
         
         # Wind damage (fruit drop mainly)
         if wind_speed < 60:
@@ -341,7 +341,7 @@ class SupplyRiskAnalyzer:
         
         expected_damage = wind_damage * flood_disease_factor
         
-        # Assume hurricane affects 60-80% of citrus belt if direct hit
+        # Assume hurricane affects 60-80% of agricultural production zones if direct hit
         affected_production = 0.70
         total_impact = expected_damage * affected_production
         
@@ -370,7 +370,7 @@ class SupplyRiskAnalyzer:
                 'rainfall': rainfall_inches,
                 'flood_factor': flood_disease_factor
             },
-            recommendation=f"ALERT: Direct hit on citrus belt. "
+            recommendation=f"ALERT: Direct hit on agricultural production zones. "
                          f"{total_impact:.1%} supply impact expected."
         )
     
@@ -382,7 +382,7 @@ class SupplyRiskAnalyzer:
         current_disease_pressure: float
     ) -> RiskAssessment:
         """
-        Assess citrus greening disease risk
+        Assess crop disease disease risk
         
         Asian citrus psyllid (disease vector) thrives in:
         - Warm temps (75-85°F)
@@ -498,7 +498,7 @@ class SupplyRiskAnalyzer:
     def generate_risk_report(self, assessment: RiskAssessment) -> str:
         """Generate formatted risk report"""
         report = "=" * 70 + "\n"
-        report += "ORANGESHIELD SUPPLY RISK ASSESSMENT\n"
+        report += "AGRIQUANT AI SUPPLY RISK ASSESSMENT\n"
         report += "=" * 70 + "\n\n"
         
         report += f"Timestamp: {assessment.timestamp.strftime('%Y-%m-%d %H:%M UTC')}\n"

@@ -1,6 +1,6 @@
 """
-ShieldOrange AI - Multi-Asset Correlation Analyzer
-Analyzes correlations between weather, OJ futures, and related markets
+AgriQuant AI - Multi-Asset Correlation Analyzer
+Analyzes correlations between weather, ag commodity futures, and related markets
 """
 
 import numpy as np
@@ -62,7 +62,7 @@ class CorrelationAnalyzer:
             temperature: Daily temperature series
             precipitation: Daily precipitation
             freeze_days: Binary freeze indicator
-            oj_returns: OJ futures returns
+            oj_returns: ag commodity futures returns
             
         Returns:
             Correlation analysis results
@@ -114,7 +114,7 @@ class CorrelationAnalyzer:
         Analyze correlations with related soft commodities
         
         Args:
-            oj_prices: OJ futures prices
+            oj_prices: ag commodity futures prices
             sugar_prices: Sugar futures prices
             coffee_prices: Coffee futures prices
             cocoa_prices: Cocoa futures prices

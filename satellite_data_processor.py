@@ -1,5 +1,5 @@
 """
-OrangeShield Satellite Data Processing
+AgriQuant AI Satellite Data Processing
 Process satellite imagery for grove health monitoring
 """
 

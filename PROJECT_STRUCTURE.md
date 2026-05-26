@@ -1,9 +1,9 @@
-# OrangeShield AI - Project Structure
+# AgriQuant AI - Project Structure
 
 ## File Overview
 
 ```
-orangeshield/
+agriquant/
 │
 ├── README.md                 # Complete documentation and setup guide
 ├── requirements.txt          # Python dependencies
@@ -20,7 +20,7 @@ orangeshield/
 │
 ├── weather_collector.py     # NOAA weather data collection
 │   • NOAAWeatherCollector class
-│   • Fetch forecasts for citrus counties
+│   • Fetch forecasts for production regions
 │   • Detect freeze risk from temperature data
 │   • Hurricane threat monitoring
 │   • Ensemble forecasting (GFS, NAM, HRRR models)
@@ -35,7 +35,7 @@ orangeshield/
 │   • Generate user-friendly explanations
 │
 ├── database.py              # PostgreSQL database operations
-│   • OrangeShieldDatabase class
+│   • AgriQuant AIDatabase class
 │   • Store weather forecasts
 │   • Store AI predictions
 │   • Store historical events (40 years)
@@ -44,7 +44,7 @@ orangeshield/
 │   • Verify predictions against actual outcomes
 │
 ├── main.py                  # Main orchestration system
-│   • OrangeShieldOrchestrator class
+│   • AgriQuant AIOrchestrator class
 │   • Coordinate all components
 │   • Run monitoring cycles (every 15 min)
 │   • Generate predictions when thresholds met
@@ -54,7 +54,7 @@ orangeshield/
 │   • Continuous monitoring mode
 │
 ├── backtest.py              # Historical validation
-│   • OrangeShieldBacktest class
+│   • AgriQuant AIBacktest class
 │   • Test prediction accuracy on past data
 │   • Load historical events from database
 │   • Simulate forecasts N days before events
@@ -190,7 +190,7 @@ prediction = engine.analyze_freeze_event(
 ### 4. Database (database.py)
 **Purpose:** PostgreSQL storage and retrieval
 
-**Main Class:** `OrangeShieldDatabase`
+**Main Class:** `AgriQuant AIDatabase`
 
 **Database Tables:**
 - `weather_forecasts` - All NOAA forecasts collected
@@ -198,7 +198,7 @@ prediction = engine.analyze_freeze_event(
 - `historical_events` - 40 years of verified events
 - `usda_reports` - Official crop damage reports
 - `satellite_imagery` - Planet Labs / Sentinel-2 metadata
-- `market_prices` - CME orange juice futures
+- `market_prices` - CME agricultural commodity futures
 - `performance_metrics` - Daily accuracy tracking
 
 **Key Methods:**
@@ -222,7 +222,7 @@ metrics = db.get_prediction_performance()
 
 **Typical Usage:**
 ```python
-db = OrangeShieldDatabase()
+db = AgriQuant AIDatabase()
 db.connect()
 pred_id = db.store_ai_prediction(prediction)
 # Later, when USDA report available:
@@ -235,7 +235,7 @@ db.verify_prediction(pred_id, actual_damage=0.127,
 ### 5. Main Orchestrator (main.py)
 **Purpose:** Coordinate entire system workflow
 
-**Main Class:** `OrangeShieldOrchestrator`
+**Main Class:** `AgriQuant AIOrchestrator`
 
 **Workflow:**
 ```
@@ -268,12 +268,12 @@ Weekly on Monday:
 **Typical Production Usage:**
 ```bash
 # Start as background service
-screen -S orangeshield
+screen -S agriquant
 python main.py continuous
 # Detach with Ctrl+A, D
 
 # Check logs
-tail -f /var/log/orangeshield/main.log
+tail -f /var/log/agriquant/main.log
 ```
 
 ---
@@ -281,7 +281,7 @@ tail -f /var/log/orangeshield/main.log
 ### 6. Backtesting (backtest.py)
 **Purpose:** Validate prediction accuracy on historical data
 
-**Main Class:** `OrangeShieldBacktest`
+**Main Class:** `AgriQuant AIBacktest`
 
 **Process:**
 1. Load historical events (2023-2025)
@@ -395,10 +395,10 @@ python demo.py
 # 1. Setup
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY='your-key'
-export DATABASE_URL='postgresql://localhost/orangeshield'
+export DATABASE_URL='postgresql://localhost/agriquant'
 
 # 2. Initialize database
-python -c "from database import *; db=OrangeShieldDatabase(); db.connect(); db.create_tables(); db.seed_historical_data()"
+python -c "from database import *; db=AgriQuant AIDatabase(); db.connect(); db.create_tables(); db.seed_historical_data()"
 
 # 3. Run demo
 python demo.py
@@ -419,13 +419,13 @@ python backtest.py --start 2023-01-01 --end 2025-12-31
 
 ```bash
 # System status
-systemctl status orangeshield
+systemctl status agriquant
 
 # View logs
-tail -f /var/log/orangeshield/main.log
+tail -f /var/log/agriquant/main.log
 
 # Check recent predictions
-psql orangeshield -c "SELECT prediction_id, county, expected_damage_pct, confidence_score FROM ai_predictions ORDER BY prediction_time DESC LIMIT 10;"
+psql agriquant -c "SELECT prediction_id, county, expected_damage_pct, confidence_score FROM ai_predictions ORDER BY prediction_time DESC LIMIT 10;"
 
 # Performance metrics
 python main.py report
@@ -448,7 +448,7 @@ python main.py report
 **Issue:** Database connection failed
 - Verify PostgreSQL is running: `systemctl status postgresql`
 - Check DATABASE_URL format: `postgresql://user:pass@host/db`
-- Create database: `createdb orangeshield`
+- Create database: `createdb agriquant`
 
 ---
 

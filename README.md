@@ -175,4 +175,4 @@ Backtested performance uses historical data with 2.5x leverage. Assumes perfect 
 - Website: [agriquant.ai](https://agriquant.ai)
 - Demo: [demo.agriquant.ai](https://demo.agriquant.ai)
 - Contact: [hello@agriquant.ai](mailto:hello@agriquant.ai)
-- X: [@ShieldOrangeAI](https://x.com/ShieldOrangeAI)
+- X: [@AgriQuant_AI](https://x.com/AgriQuant_AI)
